@@ -3,23 +3,23 @@ using System.Collections;
 
 public class Catheter : MonoBehaviour {
 
-	void MoveUp()
+	public void MoveUp()
     {
-
+        transform.position = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
     }
 
-    void MoveDown()
+    public void MoveDown()
     {
-
+        transform.position = new Vector3(transform.position.x, transform.position.y - 1, transform.position.z);
     }
 
-    void RotateLeft()
+    public void RotateLeft()
     {
-
+        transform.Rotate(Vector3.left * 180);
     }
 
-    void RotateRight()
+    public void RotateRight()
     {
-
+        transform.Rotate(Vector3.right * 180);
     }
 }

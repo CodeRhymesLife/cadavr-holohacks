@@ -7,31 +7,36 @@ public class SpeechManager : MonoBehaviour
 {
     KeywordRecognizer keywordRecognizer = null;
     Dictionary<string, System.Action> keywords = new Dictionary<string, System.Action>();
-    public GameObject Heart;
+    public Catheter catheter;
+    public float speed;
+    private Rigidbody rb;
 
     // Use this for initialization
     void Start()
     {
+        rb = catheter.GetComponent<Rigidbody>();
         keywords.Add("Move Up", () =>
         {
-            Heart.transform.position = new Vector3 (Heart.transform.position.x, Heart.transform.position.y+1, Heart.transform.position.z);
-     
+            catheter.MoveUp();
+            //rb.AddForce(*speed)
         });
 
         keywords.Add("Move Down", () =>
         {
-            Heart.transform.position = new Vector3(Heart.transform.position.x, Heart.transform.position.y-1, Heart.transform.position.z);
+            catheter.MoveDown();
         });
 
         keywords.Add("Rotate Left", () =>
         {
-            Heart.transform.Rotate(Vector3.left * 180);
+            catheter.RotateLeft();
+            //rb.AddForce(*speed)
         });
 
         keywords.Add("Rotate Right", () =>
         {
-            Heart.transform.Rotate(Vector3.right * 180);
+            catheter.RotateRight();
         });
+
         // Tell the KeywordRecognizer about our keywords.
         keywordRecognizer = new KeywordRecognizer(keywords.Keys.ToArray());
 
