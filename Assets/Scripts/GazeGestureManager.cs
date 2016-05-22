@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.VR.WSA.Input;
 
-public GameObject heart;
-
 public class GazeGestureManager : MonoBehaviour
 {
     public static int CollisionLayerMask = 1 << 8;
