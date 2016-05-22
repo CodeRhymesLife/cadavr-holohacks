@@ -3,10 +3,10 @@ using System.Collections;
 
 public class Catheter : MonoBehaviour {
 
-    public bool RotateLeft { get; set; }
-    public bool RotateRight { get; set; }
-    public bool MoveUp { get; set; }
-    public bool MoveDown { get; set; }
+    public static bool RotateLeft { get; set; }
+    public static bool RotateRight { get; set; }
+    public static bool MoveUp { get; set; }
+    public static bool MoveDown { get; set; }
 
     public void Update()
     {
@@ -17,9 +17,9 @@ public class Catheter : MonoBehaviour {
             transform.Rotate(0, -1, 0);
 
         if (MoveUp)
-            transform.position = new Vector3(transform.position.x - 0.0001f, transform.position.y, transform.position.z);
+            transform.position = new Vector3(transform.position.x - 0.001f, transform.position.y, transform.position.z);
 
         if (MoveDown)
-            transform.position = new Vector3(transform.position.x + 0.0001f, transform.position.y, transform.position.z);
+            transform.position = new Vector3(transform.position.x + 0.001f, transform.position.y, transform.position.z);
     }
 }

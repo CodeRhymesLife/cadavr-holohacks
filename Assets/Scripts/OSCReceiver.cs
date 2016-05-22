@@ -7,7 +7,6 @@ public class OSCReceiver : MonoBehaviour
     public int SendToPort = 9000; //the port you will be sending from
     public int ListenerPort = 8002; //the port you will be listening on
     public Transform controller;
-    public Catheter objectToControl;
 
     //VARIABLES YOU WANT TO BE ANIMATED
     private int yRot = 0; //the rotation around the y axis
@@ -58,21 +57,27 @@ public class OSCReceiver : MonoBehaviour
         switch (msgAddress)
         {
             case button1:
-                objectToControl.MoveUp = msgValueBool;
                 Debug.Log("Moving Up");
+                Catheter.MoveUp = msgValueBool;
+                Debug.Log("Moved Up");
                 break;
 
             case button2:
-                objectToControl.MoveDown = msgValueBool;
                 Debug.Log("Moving down");
+                Catheter.MoveDown = msgValueBool;
+                Debug.Log("Moved down");
                 break;
 
             case button3:
-                objectToControl.RotateRight = msgValueBool;
+                Debug.Log("Rotating Right");
+                Catheter.RotateRight = msgValueBool;
+                Debug.Log("Rotated Right");
                 break;
 
             case button4:
-                objectToControl.RotateLeft = msgValueBool;
+                Debug.Log("Rotating Left");
+                Catheter.RotateLeft = msgValueBool;
+                Debug.Log("Rotated Left");
                 break;
 
             default:

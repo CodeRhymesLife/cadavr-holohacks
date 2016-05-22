@@ -205,8 +205,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 112514943}
   m_LocalRotation: {x: 0, y: 0.6786727, z: -0.7344409, w: 0}
-  m_LocalPosition: {x: 0.043, y: 0.165, z: 1.067}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
+  m_LocalPosition: {x: 0.043, y: 0.124, z: 1.067}
+  m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -535,8 +535,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1409121151}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -0.028, y: -0.171, z: 0.99}
+  m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
+  m_LocalPosition: {x: -0.028, y: -0.061, z: 0.99}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_Children:
   - {fileID: 1142279538}
@@ -545,7 +545,7 @@ Transform:
   - {fileID: 1936539578}
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 90}
 --- !u!136 &1409121153
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -637,7 +637,6 @@ MonoBehaviour:
   SendToPort: 9000
   ListenerPort: 8002
   controller: {fileID: 0}
-  objectToControl: {fileID: 1971847785}
 --- !u!4 &1526522044
 Transform:
   m_ObjectHideFlags: 0
@@ -922,7 +921,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 63060ff8ed30bcf409497dff305b44a9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.047
+      value: -0.0451
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 63060ff8ed30bcf409497dff305b44a9, type: 3}
       propertyPath: m_LocalPosition.y
