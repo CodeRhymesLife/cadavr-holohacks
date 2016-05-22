@@ -10,12 +10,10 @@ public class PlaceHeartInEnv : MonoBehaviour
         // On each Select gesture, toggle whether the user is in placing mode.
         placing = !placing;
 
-        // If the user is in placing mode, display the spatial mapping mesh.
         if (placing)
         {
             SpatialMapping.Instance.DrawVisualMeshes = true;
         }
-        // If the user is not in placing mode, hide the spatial mapping mesh.
         else
         {
             SpatialMapping.Instance.DrawVisualMeshes = false;
