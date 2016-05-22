@@ -29,29 +29,6 @@ public class SpeechManager : MonoBehaviour
             scale = heart.transform.localScale,
         };
 
-        rb = catheter.GetComponent<Rigidbody>();
-        keywords.Add("Move Up", () =>
-        {
-            catheter.MoveUp();
-            //rb.AddForce(*speed)
-        });
-
-        keywords.Add("Move Down", () =>
-        {
-            catheter.MoveDown();
-        });
-
-        keywords.Add("Rotate Left", () =>
-        {
-            catheter.RotateLeft();
-            //rb.AddForce(*speed)
-        });
-
-        keywords.Add("Rotate Right", () =>
-        {
-            catheter.RotateRight();
-        });
-
         keywords.Add("Zoom In", () =>
         {
             heart.transform.localScale *= 30;
