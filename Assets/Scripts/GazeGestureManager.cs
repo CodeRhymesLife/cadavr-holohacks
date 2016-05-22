@@ -3,10 +3,14 @@ using UnityEngine.VR.WSA.Input;
 
 public class GazeGestureManager : MonoBehaviour
 {
+    public static int CollisionLayerMask = 1 << 8;
+
     public static GazeGestureManager Instance { get; private set; }
 
     // Represents the hologram that is currently being gazed at.
     public GameObject FocusedObject { get; private set; }
+    public GameObject SelectedObject { get; private set; }
+    public RaycastHit LastHitInfo { get; set; }
 
     GestureRecognizer recognizer;
 
@@ -19,14 +23,21 @@ public class GazeGestureManager : MonoBehaviour
         recognizer = new GestureRecognizer();
         recognizer.TappedEvent += (source, tapCount, ray) =>
         {
-            // Send an OnSelect message to the focused object and its ancestors.
-            if (FocusedObject != null)
+            GameObject oldSelectedObject = SelectedObject;
+
+            if (oldSelectedObject != null)
             {
-                if (!this.GetComponent<Rigidbody>())
-                {
-                    var rigidbody = this.gameObject.AddComponent<Rigidbody>();
-                    rigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
-                }
+                SelectedObject = null;
+                oldSelectedObject.SendMessageUpwards("OnDeselect");
+
+                recognizer.CancelGestures();
+                recognizer.StartCapturingGestures();
+            }
+
+            if (FocusedObject != null && FocusedObject != oldSelectedObject)
+            {
+                SelectedObject = FocusedObject;
+                SelectedObject.SendMessageUpwards("OnSelect");
             }
         };
         recognizer.StartCapturingGestures();
@@ -35,32 +46,23 @@ public class GazeGestureManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Figure out which hologram is focused this frame.
-        GameObject oldFocusObject = FocusedObject;
-
         // Do a raycast into the world based on the user's
         // head position and orientation.
         var headPosition = Camera.main.transform.position;
         var gazeDirection = Camera.main.transform.forward;
 
         RaycastHit hitInfo;
-        if (Physics.Raycast(headPosition, gazeDirection, out hitInfo))
+        if (Physics.Raycast(headPosition, gazeDirection, out hitInfo, 30.0f, CollisionLayerMask))
         {
+            LastHitInfo = hitInfo;
+
             // If the raycast hit a hologram, use that as the focused object.
-            FocusedObject = hitInfo.collider.gameObject;
+            FocusedObject = LastHitInfo.collider.gameObject;
         }
         else
         {
             // If the raycast did not hit a hologram, clear the focused object.
             FocusedObject = null;
-        }
-
-        // If the focused object changed this frame,
-        // start detecting fresh gestures again.
-        if (FocusedObject != oldFocusObject)
-        {
-            recognizer.CancelGestures();
-            recognizer.StartCapturingGestures();
         }
     }
 }
